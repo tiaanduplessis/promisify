@@ -48,6 +48,7 @@
   <summary>Table of Contents</summary>
   <li><a href="#install">Install</a></li>
   <li><a href="#usage">Usage</a></li>
+  <li><a href="#related">Related</a></li>
   <li><a href="#contribute">Contribute</a></li>
   <li><a href="#license">License</a></li>
 </details>
@@ -64,17 +65,25 @@ $ yarn add @tiaanduplessis/promisify
 
 ```js
 
+const fs = require('fs)
 const promisify = require('@tiaanduplessis/promisify')
 
 const a = (x) => x;
 const b = (x) => Promise.resolve(x)
 const c = (x) => Promise.reject(x)
 
+
 promisify(a)('foo').then(console.log)
 promisify(b)('bar').then(console.log)
 promisify(c)('baz').catch(console.log)
+promisify(fs.readFile)('package.json', 'utf8').then(console.log)
 
 ```
+
+# Related
+
+- [es6-promisify](https://github.com/digitaldesignlabs/es6-promisify)
+- [pify](https://github.com/sindresorhus/pify)
 
 ## Contributing
 

@@ -1,16 +1,18 @@
+'use strict'
 const promisify = function (func) {
-  return function () {
+  if (typeof func !== 'function') {
+    throw new Error('function should be provided')
+  }
+  return function (...args) {
     return new Promise((resolve, reject) => {
-      const result = func.apply(null, Array.from(arguments))
-      try {
-        return result.then(resolve, reject)
-      } catch (error) {
-        if (error instanceof TypeError) {
-          resolve(result)
-        } else {
-          reject(error)
+      args.push((error, ...result) => {
+        if (error) {
+          return reject(error)
         }
-      }
+        resolve(...result)
+      })
+
+      return func(...args)
     })
   }
 }
