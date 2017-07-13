@@ -65,7 +65,7 @@ $ yarn add @tiaanduplessis/promisify
 
 ```js
 
-const fs = require('fs)
+const fs = require('fs')
 const promisify = require('@tiaanduplessis/promisify')
 
 const a = (x) => x;
