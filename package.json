@@ -1,6 +1,6 @@
 {
   "name": "@tiaanduplessis/promisify",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Convert function to one returning a promise",
   "license": "MIT",
   "repository": {
@@ -10,8 +10,9 @@
   "homepage": "https://github.com/tiaanduplessis/promisify",
   "bugs": "https://github.com/tiaanduplessis/promisify",
   "main": "index.js",
-
-  "files": ["index.js"],
+  "files": [
+    "index.js"
+  ],
   "scripts": {
     "test": "jest",
     "lint": "standard index.js",
