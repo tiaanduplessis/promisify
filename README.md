@@ -55,6 +55,8 @@
 
 ## Install
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/tiaanduplessis/promisify.svg)](https://greenkeeper.io/)
+
 ```sh
 $ npm install @tiaanduplessis/promisify
 # OR
