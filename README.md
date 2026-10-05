@@ -63,17 +63,21 @@ $ yarn add @tiaanduplessis/promisify
 
 ## Usage
 
+Wrap a Node-style error-first callback function or a function that returns a Promise or thenable. The wrapper appends a callback to the supplied arguments. A truthy callback error rejects the Promise; otherwise its first result is used.
+
+If a function uses both the callback and a returned Promise/thenable, the first resolution or rejection wins. Returned rejections are handled even when the callback has already resolved or rejected the wrapper. Synchronous throws and errors reading or calling `then` reject the wrapper unless an earlier resolution or rejection has already won.
+
+Ordinary return values are ignored because callback APIs may return request or timer handles. A function that only returns a synchronous value does not settle the wrapper; use `Promise.resolve(fn(...args))` for that case. The wrapper does not forward its receiver to the function. Bind methods before passing them to `promisify` when they need `this`.
+
 ```js
 
 const fs = require('fs')
 const promisify = require('@tiaanduplessis/promisify')
 
-const a = (x) => x;
 const b = (x) => Promise.resolve(x)
 const c = (x) => Promise.reject(x)
 
 
-promisify(a)('foo').then(console.log)
 promisify(b)('bar').then(console.log)
 promisify(c)('baz').catch(console.log)
 promisify(fs.readFile)('package.json', 'utf8').then(console.log)

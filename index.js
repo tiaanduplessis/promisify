@@ -12,7 +12,13 @@ const promisify = function (func) {
         resolve(...result)
       })
 
-      return func(...args)
+      const result = func(...args)
+      if (result !== null && (typeof result === 'object' || typeof result === 'function')) {
+        const then = result.then
+        if (typeof then === 'function') {
+          Function.prototype.call.call(then, result, resolve, reject)
+        }
+      }
     })
   }
 }
